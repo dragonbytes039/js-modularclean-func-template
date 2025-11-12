@@ -1,4 +1,4 @@
-import type { Example } from "../../domain/entities.js"
+import type { Example } from "../domain/entities.js"
 
 export type DbRepository = {
 

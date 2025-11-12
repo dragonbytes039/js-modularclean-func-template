@@ -1,14 +1,11 @@
 import type {Request, Response, nextFunction} from "express"
-import { exampleControllerFactory } from "./adapters/express/createExample.controllers.js";
-import { CreateExampleFactory } from "./app/services/CreateExample.js";
-import { mongoRepoFactory } from "./repositories/implements/mongo.js";
+import { exampleMongoRepoFactory } from "./repositories/example.mongo.repo.js"
+import { ExampleServiceFactory } from "./app/example.service.js"
+import { exampleControllerFactory } from "./adapters/express/createExample.controllers.js"
 
 
 
+const exampleMongoRepo = exampleMongoRepoFactory()
+const exampleService = ExampleServiceFactory(exampleMongoRepo)
 
-export function createExampleControllerBuild (req:Request, res:Response, next:nextFunction){
-    const mongoRepo = mongoRepoFactory()
-    const service = CreateExampleFactory(mongoRepo)
-    const controller = exampleControllerFactory(service)
-    return controller(req, res, next)
-}
+export const exampleControllerBuild = exampleControllerFactory(exampleService)

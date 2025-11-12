@@ -1,7 +1,7 @@
-import type { Example } from "../../domain/entities.js";
-import type { DbRepository } from "../interfaces/db.js";
+import type { Example } from "../domain/entities.js"
+import type { DbRepository } from "./db.interfaces.js"
 
-export function mongoRepoFactory():DbRepository{
+export function exampleMongoRepoFactory():DbRepository{
     function create (example:Example){
         return example
     }
