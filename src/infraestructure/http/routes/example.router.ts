@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { exampleControllerBuild } from "../../../modules/example/index.js";
+import exampleController from "../../../modules/example/index.js";
 
 
 
 const ExampleRouter:Router = Router()
 
-ExampleRouter.post("/create" ,exampleControllerBuild.create )
+ExampleRouter.post("/create" ,exampleController.createExample) 
 
 export default ExampleRouter

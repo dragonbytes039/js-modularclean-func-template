@@ -1,14 +1,14 @@
 import type { Request, Response , NextFunction } from "express";
-import type { IexamepleService } from "../../app/example.types.js";
+import type {createExampleService } from "../../ports/example.services.js";
 
 
-export function exampleControllerFactory(service:IexamepleService){
+export function createExampleControllerFactory(service:createExampleService){
 
-    async function create(req:Request, res:Response, next:NextFunction){
+    return async function(req:Request, res:Response, next:NextFunction){
         
         try {
             
-            const result = service.create({id:1, name:"test"})
+            const result = await service({id:1, name:"test"})
 
             res.status(200).send("create")
             
@@ -18,9 +18,6 @@ export function exampleControllerFactory(service:IexamepleService){
         
     }   
 
-    return{
-        create
-    }
 }
     
   
